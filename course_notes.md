@@ -31,3 +31,28 @@ It always until the (last_index - 1)
 
     x = "hi"
     type(x)
+
+# Delete var from memory
+
+    li = [1, 2, 3]
+    def(li)
+
+    # Now cant user li
+
+# Immutable vs Mutable
+
+There are objects that is immutable:
+
+    s = "nadav"
+    s[2] = 'a' # --> Exception
+    
+On the other hand, there are object that is mutable, for example, `list`.
+
+# Tuples vs List
+
+1. Tuple is immutable while List is mutable
+2. Tuple uses less resources!
+3. List has a lot of functions
+
+4. So try to use `Tuple` when dont need the functions of the list, and when dont need change it. 
+

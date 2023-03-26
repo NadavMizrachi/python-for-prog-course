@@ -1,0 +1,1 @@
+print('True') if 2 == 1 else print('False...')
