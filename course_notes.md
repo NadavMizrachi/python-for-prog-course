@@ -127,8 +127,52 @@ Directory with `__init__.py` file. This directory contains modules. We can insta
 
 - constructor - implement `__init__` 
 - toString = implement `__str__`
+- String representation = implement __repr__
 - `>` operator = implement `__gt__`
 - `==` operator = implement `__eq__`
 - `del()` (function that is being called before garbage collector destructs the object) = implement `__del__`
 - `+` operator = implement `__add__`
+
+## difference `__str__` and `__repr__'
+
+`__str__` is for human readable string, while `__repr__` is more official Python string (could be JSON, 
+or Python object form)
+
+    class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __str__(self):
+        return f"{self.name} ({self.age})"
+
+    def __repr__(self):
+        return f"Person('{self.name}', {self.age})"
+
+    p = Person("Alice", 30)
     
+    print(p)          # Output: Alice (30)
+    print(str(p))     # Output: Alice (30)
+    print(repr(p))    # Output: Person('Alice', 30)
+
+    
+# Decorator
+
+"Decorate" function with wrapped behaviour.
+
+# Iterable 
+
+Data structure that holds in the memory only one item at a time. When we call `next()` on
+the iterable, then it proceeds to next item. For example, when we use `for` on
+iterable, each iteration is calling `next()`. So the follow `for` has million iterations,
+but for the all execution there is only one item in memory:
+
+
+    for item in range(1_000_000):
+        print(item)
+
+
+We can create objects that are `iterables` by implementing `__iter__` and `__next__`.
+`__iter__` should return `self`. 
+`__next__` implements the logic that proceeds the items in iterations. When `__next__`
+should stop, it raises stopIteration exception.
