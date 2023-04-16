@@ -176,3 +176,50 @@ We can create objects that are `iterables` by implementing `__iter__` and `__nex
 `__iter__` should return `self`. 
 `__next__` implements the logic that proceeds the items in iterations. When `__next__`
 should stop, it raises stopIteration exception.
+
+# Files
+
+f = open('path/to/file')
+
+`f` is generator (saves one chunk in memory).
+
+# Close Resources:
+
+When we done with file, we need to close it (`f.close()`)
+In python there is special keyword, `with`, that will close when we finish use the file.
+
+Example:
+
+    with open('example.txt', 'r') as file:
+        data = file.read()
+        print(data)
+
+In order to enable our object to be "closed" by `with`, we need to implement 2 methods, __enter__ 
+and __exit__:
+
+
+    class MyObject:
+    def __init__(self):
+        # initialize the object
+        pass
+
+    def __enter__(self):
+        # return the object to be used in the with block
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        # handle any necessary cleanup or error handling
+        pass
+
+# stdin & stdout & stderr
+
+We can change the stdin/out/err (for example, redirect the output to a file)
+
+    import sys
+
+    f = open('errors.log' , 'a+')
+    sys.stderr = f
+
+# multiprocessing
+
+We can assign python function to distinct processes.  
