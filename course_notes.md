@@ -222,4 +222,71 @@ We can change the stdin/out/err (for example, redirect the output to a file)
 
 # multiprocessing
 
-We can assign python function to distinct processes.  
+We can assign python function to distinct processes.  For example:
+
+    def sleepy_man(id):
+    print(f'Process id {id} Starting to sleep...')
+    time.sleep(1)
+    print('Done sleeping')
+
+
+    if __name__ == "__main__":
+        tic = time.time()
+        p1 = multiprocessing.Process(target=sleepy_man, args=(1,))
+        p2 = multiprocessing.Process(target=sleepy_man, args=(2,))
+        p1.start()
+        p2.start()
+    
+        # Wait for process p1 to finish it's job
+        p1.join()
+    
+        # Wait for process p2 to finish it's job
+        p2.join()
+
+
+We can use processes pool:
+
+    def inc(x):
+    return x ** 2
+    
+    if __name__ == "__main__":
+    numbers = range(1, 10)
+    my_pool = Pool(processes=cpu_count())
+    outputs = my_pool.map(inc, numbers)
+    print(outputs)
+
+
+## share data between processes
+
+### Pipe
+
+We can send data between processes by using `Pipe` object
+
+### Queue
+
+We can send data between processes by `Queue` object.
+
+# Threading 
+
+There is Threading module.
+
+## sync
+
+We can syncronize threading with `Lock` object. 
+
+# Multiprocessing and Threading
+
+When we use multiprocessing and when we will use threading?
+
+* When we use IO's, use threading.
+* When we use heavy calculations, use multiprocessing.
+
+
+# Subprocessing
+
+We can open sub processes in our python program. For example, the next code will open the windows calculator:
+
+    import subprocess
+    x = subprocess.run('calc.exe')
+
+How does the program knows what 'calc.exe' is? Because 'calc.exe' was set in path env variable.  
