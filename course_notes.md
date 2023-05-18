@@ -289,4 +289,11 @@ We can open sub processes in our python program. For example, the next code will
     import subprocess
     x = subprocess.run('calc.exe')
 
-How does the program knows what 'calc.exe' is? Because 'calc.exe' was set in path env variable.  
+How does the program knows what 'calc.exe' is? Because 'calc.exe' was set in path env variable.
+
+
+# Flask
+
+How execute web service with flask:
+
+    python -m flask --app <python_file_name> run
